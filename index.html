@@ -132,10 +132,10 @@
 
         /* SECCIÓN HERO / SOBRE MÍ */
         .hero-section {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2rem;
-            align-items: center;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: flex-start;
         }
 
         .hero-title h1 {
@@ -242,7 +242,6 @@
         /* Responsive */
         @media (max-width: 768px) {
 
-            .hero-section,
             .grid-2 {
                 grid-template-columns: 1fr;
             }
