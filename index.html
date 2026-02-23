@@ -5,278 +5,478 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valeria Jauregui Lorda | Backend & Hardware</title>
-    <meta name="description"
-        content="Portfolio de Valeria Jauregui Lorda. Backend Developer y Técnica Electromecánica.">
-    <link rel="icon" href="favicon.png" type="image/png">
-
-    <!-- Google Fonts: Rajdhani for Headings, Share Tech Mono for Body -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* VARIABLES TÁCTICAS (Paleta GITS) */
+        :root {
+            --bg-color: #050a08;
+            /* Negro verdoso profundo */
+            --panel-bg: rgba(10, 20, 15, 0.85);
+            --border-color: #1E3A34;
+            --main-cyan: #00FFCC;
+            /* Color principal HUD */
+            --alert-red: #FF3366;
+            --text-muted: #7A9B92;
+            --text-light: #C0D6DF;
+        }
+
+        /* RESET Y BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scrollbar-width: thin;
+            scrollbar-color: var(--main-cyan) var(--bg-color);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            font-family: 'Share Tech Mono', monospace;
+            line-height: 1.6;
+            background-image:
+                linear-gradient(rgba(0, 255, 204, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 204, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            /* Cuadrícula táctica sutil */
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--main-cyan);
+        }
+
+        a {
+            color: var(--main-cyan);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            color: var(--alert-red);
+            text-shadow: 0 0 8px var(--alert-red);
+        }
+
+        /* NAVEGACIÓN CONTINUA (MoureDev Req) */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(5, 10, 8, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1rem;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        nav a {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .container {
+            max-width: 1000px;
+            margin: 80px auto 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        /* PANELES HUD */
+        .hud-panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            position: relative;
+            /* Esquinas cortadas estilo Cyberpunk */
+            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+            box-shadow: inset 0 0 20px rgba(0, 255, 204, 0.02);
+        }
+
+        /* Detalles de las esquinas del HUD */
+        .hud-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 30px;
+            height: 30px;
+            border-top: 2px solid var(--main-cyan);
+            border-left: 2px solid var(--main-cyan);
+        }
+
+        .panel-header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .sys-id {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* SECCIÓN HERO / SOBRE MÍ */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hero-title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+        }
+
+        .hero-title h2 {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-tactico {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 1px solid var(--main-cyan);
+            color: var(--main-cyan);
+            background: transparent;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-family: 'Share Tech Mono';
+            transition: 0.2s;
+            margin-right: 10px;
+        }
+
+        .btn-tactico:hover {
+            background: var(--main-cyan);
+            color: #000;
+            box-shadow: 0 0 15px var(--main-cyan);
+        }
+
+        /* ESTRUCTURA DE COLUMNAS (Para Skills y Experiencia) */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        /* TARJETAS DE PROYECTOS */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            background: rgba(0, 255, 204, 0.02);
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: var(--main-cyan);
+            background: rgba(0, 255, 204, 0.05);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            font-size: 0.75rem;
+            color: var(--bg-color);
+            background: var(--text-muted);
+            padding: 2px 8px;
+            border-radius: 2px;
+        }
+
+        .project-links a {
+            margin-right: 1rem;
+            font-size: 0.9rem;
+            border-bottom: 1px dashed var(--main-cyan);
+        }
+
+        /* LISTAS (Experiencia) */
+        .timeline-item {
+            margin-bottom: 1.5rem;
+            border-left: 1px solid var(--border-color);
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '>';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            color: var(--main-cyan);
+            background: var(--bg-color);
+            font-size: 0.8rem;
+        }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            color: var(--main-cyan);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+
+            .hero-section,
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <nav id="navbar">
-        <a href="#about" class="nav-link">Perfil</a>
-        <a href="#projects" class="nav-link">Proyectos</a>
-        <a href="#hobbies" class="nav-link">Laboratorio</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#experience" class="nav-link">Experiencia</a>
+
+    <nav>
+        <a href="#perfil">[ 01. PERFIL ]</a>
+        <a href="#proyectos">[ 02. PROYECTOS ]</a>
+        <a href="#hobbies">[ 03. LAB_HOBBIES ]</a>
+        <a href="#skills">[ 04. SKILLS ]</a>
+        <a href="#experiencia">[ 05. LOGS_EXP ]</a>
     </nav>
 
-    <main class="container">
+    <div class="container">
 
-        <!-- HERO / SOBRE MÍ -->
-        <section id="about" class="section hero glass-panel">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <p class="greeting">Hola, soy</p>
-                    <h1 class="name">Valeria Jauregui Lorda</h1>
-                    <h2 class="title">Backend Developer & Técnica Electromecánica</h2>
-                    <p class="bio">
+        <section id="perfil" class="hud-panel">
+            <div class="panel-header">
+                <h3>OPERATOR_ID: V_JAUREGUI_LORDA</h3>
+                <span class="sys-id" id="sys-time">SYS.TIME: --:--:--</span>
+            </div>
+            <div class="hero-section">
+                <div class="hero-title">
+                    <h1>Valeria Jauregui Lorda</h1>
+                    <h2>&gt; Backend Developer | Técnica Electromecánica</h2>
+                    <p style="margin-bottom: 1.5rem;">
                         Estudiante de Ingeniería en Computación (UNLP). Fusión de hardware industrial y arquitectura de
-                        software.
-                        Especializada en desarrollo Backend, automatización de procesos y gestión de agentes de IA.
-                        Busco proyectos de alta exigencia donde la eficiencia es clave.
+                        software. Especializada en desarrollo Backend, automatización de procesos y gestión de agentes
+                        de IA. Busco proyectos de alta exigencia táctica.
                     </p>
-                    <div class="hero-actions">
-                        <a href="mailto:valejlorda@gmail.com" class="btn btn-primary">Contacto</a>
-                        <a href="wl.pdf" target="_blank" class="btn btn-secondary">Descargar CV</a>
+                    <a href="mailto:valejlorda@gmail.com" class="btn-tactico">INICIAR_COMUNICACIÓN</a>
+                    <a href="wl.pdf" target="_blank" class="btn-tactico">DESCARGAR_DOSSIER_CV</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="proyectos" class="hud-panel">
+            <div class="panel-header">
+                <h3>DATA_PODS // PROYECTOS_PRINCIPALES</h3>
+                <span class="sys-id">DIR: /usr/dev/projects</span>
+            </div>
+
+            <div class="project-grid">
+
+                <div class="project-card">
+                    <h3 style="color: var(--text-light)">Tablero AF</h3>
+                    <p>Solución integral de gestión para servicios de mantenimiento electromecánico. Creación de
+                        dashboards interactivos y automatización de procesos complejos.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Metabase</span>
+                        <span class="tech-tag">N8N</span>
+                        <span class="tech-tag">NocoDB</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" target="_blank">&gt; REPOSITORIO</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3 style="color: var(--text-light)">AF-web-v2</h3>
+                    <p>Migración y rediseño integral de una landing page desde WordPress a código nativo, priorizando
+                        velocidad de carga y diseño responsive optimizado sin dependencias.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">Vanilla JS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/ValeryJL/AF-web-v2" target="_blank">&gt; REPOSITORIO</a>
+                        <a href="https://valeryjl.github.io/AF-web-v2/" target="_blank">&gt; LIVE_DEMO</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3 style="color: var(--text-light)">AF-web (Versión Original)</h3>
+                    <p>Primera iteración de la web para AF Construcciones y Servicios. Desarrollo inicial enfocado en
+                        establecer la presencia digital de la empresa.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">WordPress</span>
+                        <span class="tech-tag">Elementor</span>
+                        <span class="tech-tag">CSS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/ValeryJL/AF-web" target="_blank">&gt; REPOSITORIO</a>
+                        <a href="https://valeryjl.github.io/AF-web/" target="_blank">&gt; LIVE_DEMO</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="hobbies" class="hud-panel">
+            <div class="panel-header">
+                <h3>EXP_PODS // LABORATORIO_HOBBIES</h3>
+                <span class="sys-id">DIR: /usr/dev/experiments</span>
+            </div>
+
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3 style="color: var(--text-light)">InsanusChat Backend</h3>
+                    <p>Desarrollo de un backend para gestionar un software de creación de Agentes de IA, con un chat no
+                        lineal en estructura de árbol general.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">MongoDB</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/ValeryJL/InsanusChat_Backend" target="_blank">&gt; REPOSITORIO</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3 style="color: var(--text-light)">InsanusChat Frontend</h3>
+                    <p>Interfaz de usuario experimental para el sistema de Agentes de IA, diseñada para visualizar y
+                        gestionar flujos conversacionales no lineales.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">TypeScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/ValeryJL/InsanusChat_Frontend" target="_blank">&gt; REPOSITORIO</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3 style="color: var(--text-light)">InsanusNotes</h3>
+                    <p>Aplicación de notas personal orientada a la organización de conocimientos técnicos y
+                        documentación de proyectos experimentales.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Desarrollo Propio</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/ValeryJL/InsanusNotes" target="_blank">&gt; REPOSITORIO</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PROYECTOS PRINCIPALES -->
-        <section id="projects" class="section">
-            <h2 class="section-title">Proyectos Principales</h2>
-            <div class="projects-grid">
+        <div class="grid-2">
 
-                <article class="project-card glass-panel">
-                    <div class="project-content">
-                        <h3>Tablero AF</h3>
-                        <p>Solución integral de gestión para servicios de mantenimiento electromecánico. Creación de
-                            dashboards interactivos y automatización de procesos complejos.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">PostgreSQL</span>
-                            <span class="tech-tag">Metabase</span>
-                            <span class="tech-tag">N8N</span>
-                            <span class="tech-tag">NocoDB</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" target="_blank" class="link-btn">&gt; REPOSITORIO</a>
-                        </div>
-                    </div>
-                </article>
+            <section id="skills" class="hud-panel">
+                <div class="panel-header">
+                    <h3>SKILL_MATRIX // CAPACIDADES</h3>
+                </div>
+                <div>
+                    <p><strong style="color:var(--main-cyan)">[ BACKEND & DB ]</strong><br>
+                        Python (FastAPI), Java (Spring Boot), PostgreSQL, MongoDB, SQL, Microsoft SQL.</p><br>
 
-                <article class="project-card glass-panel">
-                    <div class="project-content">
-                        <h3>AF-web-v2</h3>
-                        <p>Migración y rediseño integral de una landing page desde WordPress a código nativo,
-                            priorizando velocidad de carga y diseño responsive optimizado sin dependencias.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">HTML5</span>
-                            <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">Vanilla JS</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/ValeryJL/AF-web-v2" target="_blank" class="link-btn">&gt;
-                                REPOSITORIO</a>
-                            <a href="https://valeryjl.github.io/AF-web-v2/" target="_blank" class="link-btn">&gt; LIVE
-                                DEMO</a>
-                        </div>
-                    </div>
-                </article>
+                    <p><strong style="color:var(--main-cyan)">[ FRONTEND ]</strong><br>
+                        HTML5, CSS, JavaScript, React (UI/UX).</p><br>
 
-                <article class="project-card glass-panel">
-                    <div class="project-content">
-                        <h3>AF-web (Versión Original)</h3>
-                        <p>Primera iteración de la web para AF Construcciones y Servicios. Desarrollo inicial enfocado
-                            en establecer la presencia digital de la empresa.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">WordPress</span>
-                            <span class="tech-tag">Elementor</span>
-                            <span class="tech-tag">CSS</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/ValeryJL/AF-web" target="_blank" class="link-btn">&gt;
-                                REPOSITORIO</a>
-                            <a href="https://valeryjl.github.io/AF-web/" target="_blank" class="link-btn">&gt; LIVE
-                                DEMO</a>
-                        </div>
-                    </div>
-                </article>
+                    <p><strong style="color:var(--main-cyan)">[ HARDWARE & ROBÓTICA ]</strong><br>
+                        C, C++, Arduino IDE, PLC, SolidWorks, Inventor, Sistemas Embebidos.</p><br>
 
-            </div>
-        </section>
-
-        <!-- PROYECTOS EXPERIMENTALES / HOBBIES -->
-        <section id="hobbies" class="section">
-            <h2 class="section-title">Laboratorio & Hobbies</h2>
-            <div class="projects-grid">
-
-                <article class="project-card glass-panel">
-                    <div class="project-content">
-                        <h3>InsanusChat Backend</h3>
-                        <p>Desarrollo de un backend para gestionar un software de creación de Agentes de IA, con un chat
-                            no lineal en estructura de árbol general.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">FastAPI</span>
-                            <span class="tech-tag">MongoDB</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/ValeryJL/InsanusChat_Backend" target="_blank"
-                                class="link-btn">&gt; REPOSITORIO</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="project-card glass-panel">
-                    <div class="project-content">
-                        <h3>InsanusChat Frontend</h3>
-                        <p>Interfaz de usuario experimental para el sistema de Agentes de IA, diseñada para visualizar y
-                            gestionar flujos conversacionales no lineales.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">TypeScript</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/ValeryJL/InsanusChat_Frontend" target="_blank"
-                                class="link-btn">&gt; REPOSITORIO</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="project-card glass-panel">
-                    <div class="project-content">
-                        <h3>InsanusNotes</h3>
-                        <p>Aplicación de notas personal orientada a la organización de conocimientos técnicos y
-                            documentación de proyectos experimentales.</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">Desarrollo Propio</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/ValeryJL/InsanusNotes" target="_blank" class="link-btn">&gt;
-                                REPOSITORIO</a>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-        </section>
-
-        <div class="grid-2-col">
-            <!-- SKILLS -->
-            <section id="skills" class="section glass-panel">
-                <h2 class="section-title">Habilidades Técnicas</h2>
-                <div class="skills-container">
-
-                    <div class="skill-category">
-                        <h3>Backend & Base de Datos</h3>
-                        <div class="tech-stack">
-                            <span class="tech-tag">Python (FastAPI)</span>
-                            <span class="tech-tag">Java (Spring Boot)</span>
-                            <span class="tech-tag">PostgreSQL</span>
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">SQL</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Frontend</h3>
-                        <div class="tech-stack">
-                            <span class="tech-tag">HTML5</span>
-                            <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">React</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Hardware & Robótica</h3>
-                        <div class="tech-stack">
-                            <span class="tech-tag">C / C++</span>
-                            <span class="tech-tag">Arduino</span>
-                            <span class="tech-tag">Sistemas Embebidos</span>
-                            <span class="tech-tag">PLC</span>
-                            <span class="tech-tag">SolidWorks</span>
-                            <span class="tech-tag">Inventor</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Herramientas & DevOps</h3>
-                        <div class="tech-stack">
-                            <span class="tech-tag">Linux</span>
-                            <span class="tech-tag">Git</span>
-                            <span class="tech-tag">Docker</span>
-                        </div>
-                    </div>
-
+                    <p><strong style="color:var(--main-cyan)">[ HERRAMIENTAS ]</strong><br>
+                        Linux (Terminal), Git, Docker, VS Code.</p>
                 </div>
             </section>
 
-            <!-- EXPERIENCIA Y EDUCACION -->
-            <section id="experience" class="section glass-panel">
-                <h2 class="section-title">Trayectoria</h2>
-
-                <div class="timeline">
-                    <h3 class="timeline-title">Experiencia Técnica & Industrial</h3>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">05/2025 - Actualidad</div>
-                        <h4 class="timeline-role">Inspectora</h4>
-                        <div class="timeline-company">AF Construcciones y Servicios</div>
-                        <p class="timeline-desc">Inspección, puesta en marcha y mantenimiento de grupos electrógenos y
-                            sistemas electromecánicos. Esta experiencia de campo aporta habilidades esenciales en
-                            resolución de problemas complejos, responsabilidad operativa y entendimiento profundo del
-                            hardware industrial; competencias directamente transferibles al desarrollo Backend y la
-                            automatización robusta.</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">03/2024 - 12/2024</div>
-                        <h4 class="timeline-role">Becaria en Robótica</h4>
-                        <div class="timeline-company">Instituto LEICI, UNLP</div>
-                        <p class="timeline-desc">Reparación y reprogramación de recolector robótico autónomo. Rediseño
-                            integral de hardware.</p>
-                    </div>
+            <section id="experiencia" class="hud-panel">
+                <div class="panel-header">
+                    <h3>MISSION_LOGS // HISTORIAL</h3>
                 </div>
 
-                <div class="timeline" style="margin-top: 2rem;">
-                    <h3 class="timeline-title">Formación Académica</h3>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">03/2022 - Presente (51% Aprobado)</div>
-                        <h4 class="timeline-role">Ingeniería en Computación</h4>
-                        <div class="timeline-company">Universidad Nacional de La Plata (UNLP)</div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">2015 - 2021</div>
-                        <h4 class="timeline-role">Técnica en Electromecánica</h4>
-                        <div class="timeline-company">EEST N°8</div>
-                    </div>
+                <h3 style="margin-bottom: 1rem;">// EXPERIENCIA INDUSTRIAL & TÉCNICA</h3>
+                <div class="timeline-item">
+                    <span class="timeline-date">05/2025 - Actual</span>
+                    <h4>Inspectora | AF Construcciones y Servicios</h4>
+                    <p style="font-size: 0.9rem; margin-top: 0.4rem;">Inspección, puesta en marcha y mantenimiento de
+                        grupos electrógenos y sistemas electromecánicos. Esta experiencia de campo aporta habilidades
+                        esenciales en resolución de problemas complejos, responsabilidad operativa y entendimiento
+                        profundo del hardware industrial; competencias directamente transferibles al desarrollo Backend
+                        y la automatización robusta.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">03/2024 - 12/2024</span>
+                    <h4>Becaria en Robótica | Instituto LEICI, UNLP</h4>
+                    <p style="font-size: 0.9rem; margin-top: 0.4rem;">Reparación y reprogramación de recolector robótico
+                        autónomo. Rediseño integral de hardware.</p>
                 </div>
 
+                <h3 style="margin-bottom: 1rem; margin-top: 2rem;">// EDUCACIÓN</h3>
+                <div class="timeline-item">
+                    <span class="timeline-date">03/2022 - Actual (51% Aprobado)</span>
+                    <h4>Ingeniería en Computación | UNLP</h4>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">2015 - 2021</span>
+                    <h4>Técnica en Electromecánica | EEST N°8</h4>
+                </div>
             </section>
+
         </div>
 
-    </main>
+        <footer style="text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.8rem;">
+            [ CONEXIÓN SEGURA FINALIZADA ] &copy; Valeria Jauregui Lorda
+        </footer>
 
-    <footer>
-        <p>&copy; 2026 Valeria Jauregui Lorda. Diseñado y desarrollado con dedicación.</p>
-    </footer>
+    </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Actualiza el reloj del sistema para darle inmersión
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('es-AR', { hour12: false });
+            const ms = now.getMilliseconds().toString().padStart(3, '0');
+            document.getElementById('sys-time').innerText = `SYS.TIME: ${timeString}.${ms}`;
+        }
+        setInterval(updateTime, 50);
+
+        // Scroll suave al hacer clic en los enlaces de la navbar
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                // Ajuste para que la navbar fija no tape el título
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
