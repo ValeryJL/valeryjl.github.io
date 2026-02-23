@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="monitor-casing">
+        <div class="screen-glass">
+            <div class="scanlines"></div>
+            <div class="crt-overlay"></div>
+
+            <main class="terminal">
+                <header class="terminal-header">
+                    <p data-i18n="header_title">ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL</p>
+                    <p data-i18n="header_prompt">ENTER COMMAND NOW</p>
+                    <div style="text-align: right;">
+                        <button onclick="toggleLanguage()" class="term-link" id="lang-toggle">[ EN | ES ]</button>
+                    </div>
+                    <br>
+                    <nav class="terminal-nav">
+                        <button onclick="switchScreen('home')" class="term-link" data-i18n="nav_home">>
+                            SYSTEM_STATUS</button>
+                        <button onclick="switchScreen('core_projects')" class="term-link" data-i18n="nav_core">>
+                            DIR/CORE_SYS</button>
+                        <button onclick="switchScreen('exp_projects')" class="term-link" data-i18n="nav_exp">>
+                            DIR/EXP_SYS</button>
+                        <button onclick="switchScreen('contact')" class="term-link" data-i18n="nav_contact">>
+                            COMMUNICATE</button>
+                    </nav>
+                    <br>
+                    <p>--------------------------------------------------</p>
+                </header>
+
+                <div id="screen-container">
+                    <!-- Javascript will inject and linearly type out the screen content here -->
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
