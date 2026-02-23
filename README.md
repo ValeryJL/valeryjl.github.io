@@ -1,5 +1,7 @@
 # Valeria Jauregui Lorda - Portfolio
 
+**Live Preview:** [valeryjl.github.io](https://valeryjl.github.io)
+
 This repository contains the source code for my personal portfolio website, designed to resemble a classic RobCo Industries terminal from the Fallout universe. 
 
 ## Features
