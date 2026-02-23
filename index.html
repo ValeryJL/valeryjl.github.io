@@ -1,50 +1,216 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL</title>
+    <title>Valeria Jauregui Lorda | Backend & Hardware</title>
+    <meta name="description"
+        content="Portfolio de Valeria Jauregui Lorda. Backend Developer y Técnica Electromecánica.">
     <link rel="icon" href="favicon.png" type="image/png">
+
+    <!-- Google Fonts: Outfit for Headings, Inter for Body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="monitor-casing">
-        <div class="screen-glass">
-            <div class="scanlines"></div>
-            <div class="crt-overlay"></div>
+    <nav id="navbar">
+        <a href="#about" class="nav-link">Perfil</a>
+        <a href="#projects" class="nav-link">Proyectos</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#experience" class="nav-link">Experiencia</a>
+    </nav>
 
-            <main class="terminal">
-                <header class="terminal-header">
-                    <p data-i18n="header_title">ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL</p>
-                    <p data-i18n="header_prompt">ENTER COMMAND NOW</p>
-                    <div style="text-align: right;">
-                        <button onclick="toggleLanguage()" class="term-link" id="lang-toggle">[ EN | ES ]</button>
+    <main class="container">
+
+        <!-- HERO / SOBRE MÍ -->
+        <section id="about" class="section hero glass-panel">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <p class="greeting">Hola, soy</p>
+                    <h1 class="name">Valeria Jauregui Lorda</h1>
+                    <h2 class="title">Backend Developer & Técnica Electromecánica</h2>
+                    <p class="bio">
+                        Estudiante de Ingeniería en Computación (UNLP). Fusión de hardware industrial y arquitectura de
+                        software.
+                        Especializada en desarrollo Backend, automatización de procesos y gestión de agentes de IA.
+                        Busco proyectos de alta exigencia donde la eficiencia es clave.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="mailto:valejlorda@gmail.com" class="btn btn-primary">Contacto</a>
+                        <a href="wl.pdf" target="_blank" class="btn btn-secondary">Descargar CV</a>
                     </div>
-                    <br>
-                    <nav class="terminal-nav">
-                        <button onclick="switchScreen('home')" class="term-link" data-i18n="nav_home">>
-                            SYSTEM_STATUS</button>
-                        <button onclick="switchScreen('core_projects')" class="term-link" data-i18n="nav_core">>
-                            DIR/CORE_SYS</button>
-                        <button onclick="switchScreen('exp_projects')" class="term-link" data-i18n="nav_exp">>
-                            DIR/EXP_SYS</button>
-                        <button onclick="switchScreen('contact')" class="term-link" data-i18n="nav_contact">>
-                            COMMUNICATE</button>
-                    </nav>
-                    <br>
-                    <p>--------------------------------------------------</p>
-                </header>
+                </div>
+            </div>
+        </section>
 
-                <div id="screen-container">
-                    <!-- Javascript will inject and linearly type out the screen content here -->
+        <!-- PROYECTOS -->
+        <section id="projects" class="section">
+            <h2 class="section-title">Proyectos Destacados</h2>
+            <div class="projects-grid">
+
+                <article class="project-card glass-panel">
+                    <div class="project-content">
+                        <h3>InsanusChat Backend</h3>
+                        <p>Desarrollo de un backend para gestionar un software de creación de Agentes de IA, con un chat
+                            no lineal en estructura de árbol general.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ValeryJL/InsanusChat_Backend" target="_blank"
+                                class="link-btn">Ver Código</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card glass-panel">
+                    <div class="project-content">
+                        <h3>AF-web-v2</h3>
+                        <p>Migración y rediseño integral de una landing page desde WordPress a código nativo,
+                            priorizando velocidad de carga y diseño responsive optimizado sin dependencias.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">Vanilla JS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ValeryJL/AF-web-v2" target="_blank"
+                                class="link-btn">Repositorio</a>
+                            <a href="https://valeryjl.github.io/AF-web-v2/" target="_blank" class="link-btn">Live
+                                Demo</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card glass-panel">
+                    <div class="project-content">
+                        <h3>Tablero AF</h3>
+                        <p>Solución integral de gestión para servicios de mantenimiento electromecánico. Creación de
+                            dashboards interactivos y automatización de procesos complejos.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Metabase</span>
+                            <span class="tech-tag">N8N</span>
+                            <span class="tech-tag">NocoDB</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <div class="grid-2-col">
+            <!-- SKILLS -->
+            <section id="skills" class="section glass-panel">
+                <h2 class="section-title">Habilidades Técnicas</h2>
+                <div class="skills-container">
+
+                    <div class="skill-category">
+                        <h3>Backend & Base de Datos</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python (FastAPI)</span>
+                            <span class="tech-tag">Java (Spring Boot)</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">SQL</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Frontend</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">React</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Hardware & Robótica</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">C / C++</span>
+                            <span class="tech-tag">Arduino</span>
+                            <span class="tech-tag">Sistemas Embebidos</span>
+                            <span class="tech-tag">PLC</span>
+                            <span class="tech-tag">SolidWorks</span>
+                            <span class="tech-tag">Inventor</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Herramientas & DevOps</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Linux</span>
+                            <span class="tech-tag">Git</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- EXPERIENCIA Y EDUCACION -->
+            <section id="experience" class="section glass-panel">
+                <h2 class="section-title">Trayectoria</h2>
+
+                <div class="timeline">
+                    <h3 class="timeline-title">Experiencia Profesional</h3>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">05/2025 - Actualidad</div>
+                        <h4 class="timeline-role">Inspectora</h4>
+                        <div class="timeline-company">AF Construcciones y Servicios</div>
+                        <p class="timeline-desc">Inspección, puesta en marcha y mantenimiento de grupos electrógenos y
+                            sistemas electromecánicos.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">03/2024 - 12/2024</div>
+                        <h4 class="timeline-role">Becaria en Robótica</h4>
+                        <div class="timeline-company">Instituto LEICI, UNLP</div>
+                        <p class="timeline-desc">Reparación y reprogramación de recolector robótico autónomo. Rediseño
+                            integral de hardware.</p>
+                    </div>
                 </div>
 
-            </main>
+                <div class="timeline" style="margin-top: 2rem;">
+                    <h3 class="timeline-title">Formación Académica</h3>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">03/2022 - Presente (51% Aprobado)</div>
+                        <h4 class="timeline-role">Ingeniería en Computación</h4>
+                        <div class="timeline-company">Universidad Nacional de La Plata (UNLP)</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2015 - 2021</div>
+                        <h4 class="timeline-role">Técnica en Electromecánica</h4>
+                        <div class="timeline-company">EEST N°8</div>
+                    </div>
+                </div>
+
+            </section>
         </div>
-    </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Valeria Jauregui Lorda. Diseñado y desarrollado con dedicación.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
